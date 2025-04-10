@@ -67,6 +67,12 @@ namespace calculator
                     if (num2 == 0) throw new DivideByZeroException("Division by zero is not allowed");
                     result = num1 / num2;
                     break;
+                case "**":
+                    result = Math.Pow(num1, (int)num2);
+                    break;
+                case "%":
+                    result = (int)num1 % (int)num2;
+                    break;
                 case "G":
                     result = gcd((int)num1, (int)num2);
                     break;
