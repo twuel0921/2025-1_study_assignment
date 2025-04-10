@@ -7,7 +7,7 @@ namespace calculator
         static void Main(string[] args)
         {
             Console.WriteLine("Enter an expression (ex. 2 + 3): ");
-            string input = Console.ReadLine();  
+            string input = Console.ReadLine();
 
             try
             {
@@ -51,7 +51,44 @@ namespace calculator
     {
         public double Calculate(double num1, string op, double num2)
         {
-            return 0;
+            double result = 0;
+            switch (op)
+            {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    if (num2 == 0) throw new DivideByZeroException("Division by zero is not allowed");
+                    result = num1 / num2;
+                    break;
+                case "G":
+                    result = gcd((int)num1, (int)num2);
+                    break;
+                case "L":
+                    result = lcm((int)num1, (int)num2);
+                    break;
+                default:
+                    throw new InvalidOperationException("Invalid operator");
+            }
+            return result;
+        }
+
+        private int gcd(int num1, int num2)
+        {
+            int r = num1 % num2;
+            if (r == 0) return num2;
+            return gcd(num2, r);
+        }
+
+        private int lcm(int num1, int num2)
+        {
+            return num1 * num2 / gcd(num1, num2);
         }
     }
 }
