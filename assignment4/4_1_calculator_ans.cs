@@ -7,7 +7,7 @@ namespace calculator
         static void Main(string[] args)
         {
             Console.WriteLine("Enter an expression (ex. 2 + 3): ");
-            string input = Console.ReadLine();
+            string input = Console.ReadLine();  
 
             try
             {
