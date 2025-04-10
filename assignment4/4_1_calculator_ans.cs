@@ -49,9 +49,10 @@ namespace calculator
     // Calculator class to perform operations
     public class Calculator
     {
-        // ---------- TODO ----------
-        
-        // --------------------
+        public double Calculate(double num1, string op, double num2)
+        {
+            return 0;
+        }
     }
 }
 
