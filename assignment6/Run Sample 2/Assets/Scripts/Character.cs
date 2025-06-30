@@ -18,13 +18,18 @@ public class Character : MonoBehaviour
     void Update()
     {
         // 좌클릭시 RemainJump를 하나 소모하여 CharacterJumpPower의 힘으로 점프한다.
-        // ---------- TODO ---------- 
-        
-        // -------------------- 
+        if(Input.GetMouseButton(0))
+        {
+            if(RemainJump > 0)
+            {
+                RemainJump--;
+                Jump();
+            }
+        }
     }
 
     // Jump with power
-    void Jump(float power)
+    void Jump()
     {
         GetComponent<Rigidbody2D>().AddForce(new Vector3(0, CharacterJumpPower, 0), ForceMode2D.Impulse);
     }
@@ -33,17 +38,16 @@ public class Character : MonoBehaviour
     {
         // tag가 Platform인 것과 충돌하면 RemainJump를 초기화한다.
         // tag가 Obstacle인 것과 충돌하면 게임 오버한다.
-        // ---------- TODO ---------- 
-
-        // -------------------- 
-        GM.GameOver();
+        if (col.gameObject.tag == "Platform") RemainJump = MaxJump;
+        else if(col.gameObject.tag == "Obstacle") GM.GameOver();
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         // tag가 Point인 것과 충돌하면 Point를 하나 얻고, 충돌한 오브젝트를 삭제한다.
-        if(col.CompareTag("Point"))
+        if(col.gameObject.tag == "Point")
         {
+            GM.GetPoint(1);
             Destroy(col.gameObject);
         }
     }
